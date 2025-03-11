@@ -1,4 +1,16 @@
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
+
+string URL = "";  //can be gotten from the application.json
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration) // Read configuration from appsettings.json
+    .Enrich.FromLogContext() // More detailed log
+    .WriteTo.Console() 
+    .WriteTo.Seq(URL) 
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -22,4 +34,4 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.Run();
+await app.RunAsync();
