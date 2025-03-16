@@ -24,8 +24,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TestHub.Core\TestHub.Core.csproj" />
-  </ItemGroup>
-
 </Project>

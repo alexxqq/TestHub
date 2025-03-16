@@ -1,0 +1,38 @@
+﻿@page
+@model TestHub.View.Pages.Supervisor.IndexModel
+@{
+    ViewData["Title"] = "Список адміністраторів";
+}
+
+<h2>Список адміністраторів</h2>
+<a href="/Supervisor/AddAdmin" class="btn btn-primary">Додати адміна</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ім'я</th>
+            <th>Логін</th>
+            <th>Створено</th>
+            <th>Дія</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var admin in Model.Admins)
+        {
+            <tr>
+                <td>@admin.user_id</td>
+                <td>@admin.name</td>
+                <td>@admin.login</td>
+                <td>@admin.created_at</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="id" value="@admin.user_id" />
+                        <button type="submit" asp-page-handler="Delete" class="btn btn-danger">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

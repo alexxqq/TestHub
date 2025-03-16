@@ -1,0 +1,55 @@
+﻿@page
+@model TestHub.View.Pages.Tests.AddQuestionModel
+@{
+    ViewData["Title"] = "Додавання питання";
+}
+
+<h2>Додати питання</h2>
+
+<form method="post">
+    <label>Питання:</label>
+    <input type="text" asp-for="Question.question_text" required />
+
+    @if (Model.QuestionType == "0")
+    {
+        <div id="answers">
+            <button type="button" onclick="addRadioOption()">Додати варіант</button>
+        </div>
+    }
+    else if (Model.QuestionType == "1")
+    {
+        <div id="answers">
+            <button type="button" onclick="addCheckboxOption()">Додати варіант</button>
+        </div>
+    }
+    else if (Model.QuestionType == "2")
+    {
+        <div>
+            <input type="radio" name="answer" value="true" checked> True
+            <input type="radio" name="answer" value="false"> False
+        </div>
+    }
+    else if (Model.QuestionType == "3")
+    {
+        <label>Правильна відповідь:</label>
+        <!--<input type="text" asp-for="Question.answers." required />-->
+    }
+
+    <button type="submit">Додати</button>
+</form>
+
+<script>
+    function addRadioOption() {
+        var container = document.getElementById("answers");
+        var div = document.createElement("div");
+        div.innerHTML = '<input type="radio" name="correctOption"> <input type="text" name="options[]">';
+        container.appendChild(div);
+    }
+
+    function addCheckboxOption() {
+        var container = document.getElementById("answers");
+        var div = document.createElement("div");
+        div.innerHTML = '<input type="checkbox" name="correctOptions[]"> <input type="text" name="options[]">';
+        container.appendChild(div);
+    }
+</script>

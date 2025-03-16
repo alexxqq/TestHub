@@ -33,5 +33,6 @@ namespace TestHub.DAL.Models
         public DateTime available_from { get; set; }
         public DateTime available_to { get; set; }
         public int max_attempts { get; set; }
+        public required List<Question> questions { get; set; }
     }
 }

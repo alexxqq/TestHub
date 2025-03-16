@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHub", "TestHub\TestHub.csproj", "{D23F016C-03D7-448D-AA28-851D5E0AEFB2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHub.Core", "TestHub.Core\TestHub.Core.csproj", "{88931582-093F-412D-BA95-DD16CC8FC8E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHub.View", "TestHub\TestHub.View.csproj", "{D23F016C-03D7-448D-AA28-851D5E0AEFB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHub.DAL", "TestHub.Data\TestHub.DAL.csproj", "{484616ED-D974-40AF-A81A-AE1D076AC7FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHub.Services", "TestHub.Services\TestHub.Services.csproj", "{59E23F27-48A1-463B-85CC-4EDE8049EAE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHub.BLL", "TestHub.Services\TestHub.BLL.csproj", "{59E23F27-48A1-463B-85CC-4EDE8049EAE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3C1BC3D-D348-4A02-B743-6F442B67DDCF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHub.UnitTests", "TestHubUnitTests\TestHub.UnitTests.csproj", "{5DF6444A-BE51-46E0-B342-9BD1E7AC137B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +26,6 @@ Global
 		{D23F016C-03D7-448D-AA28-851D5E0AEFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23F016C-03D7-448D-AA28-851D5E0AEFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D23F016C-03D7-448D-AA28-851D5E0AEFB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88931582-093F-412D-BA95-DD16CC8FC8E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88931582-093F-412D-BA95-DD16CC8FC8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88931582-093F-412D-BA95-DD16CC8FC8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88931582-093F-412D-BA95-DD16CC8FC8E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{484616ED-D974-40AF-A81A-AE1D076AC7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{484616ED-D974-40AF-A81A-AE1D076AC7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{484616ED-D974-40AF-A81A-AE1D076AC7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +34,10 @@ Global
 		{59E23F27-48A1-463B-85CC-4EDE8049EAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59E23F27-48A1-463B-85CC-4EDE8049EAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59E23F27-48A1-463B-85CC-4EDE8049EAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF6444A-BE51-46E0-B342-9BD1E7AC137B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF6444A-BE51-46E0-B342-9BD1E7AC137B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF6444A-BE51-46E0-B342-9BD1E7AC137B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF6444A-BE51-46E0-B342-9BD1E7AC137B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

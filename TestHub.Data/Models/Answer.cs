@@ -11,5 +11,7 @@ namespace TestHub.DAL.Models
         public required int question_id { get; set; }
         public required string answer_text { get; set; }
         public required bool is_correct { get; set; }
+        [ForeignKey("question_id")]
+        public required Question question { get; set; }
     }
 }

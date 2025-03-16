@@ -9,26 +9,20 @@ namespace TestHub.DAL
 {
     public class Env
     {
-        private string dbHost;
-        private string dbUser;
-        private string dbPass;
-        private string dbPort;
-        private string dbName;
-
         public Env()
         {
             DotNetEnv.Env.Load();
-            DbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            DbUser = Environment.GetEnvironmentVariable("DB_USER");
-            DbPass = Environment.GetEnvironmentVariable("DB_PASS");
-            DbPort = Environment.GetEnvironmentVariable("DB_PORT");
-            DbName = Environment.GetEnvironmentVariable("DB_NAME");
+            DbHost = Environment.GetEnvironmentVariable("DB_HOST")?? "localhost";
+            DbUser = Environment.GetEnvironmentVariable("DB_USER")?? "postgres";
+            DbPass = Environment.GetEnvironmentVariable("DB_PASS")?? "1234";
+            DbPort = Environment.GetEnvironmentVariable("DB_PORT")?? "5432";
+            DbName = Environment.GetEnvironmentVariable("DB_NAME")?? "postgres";
         }
 
-        public string DbHost { get => dbHost; set => dbHost = value; }
-        public string DbUser { get => dbUser; set => dbUser = value; }
-        public string DbPass { get => dbPass; set => dbPass = value; }
-        public string DbPort { get => dbPort; set => dbPort = value; }
-        public string DbName { get => dbName; set => dbName = value; }
+        public string DbHost { get; set; }
+        public string DbUser { get; set; }
+        public string DbPass { get; set; }
+        public string DbPort { get; set; }
+        public string DbName { get; set; }
     }
 }
