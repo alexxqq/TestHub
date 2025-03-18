@@ -1,25 +1,53 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Serilog;
+using System;
+using TestHub.BLL.Interfaces;
+using TestHub.BLL.Services;
+using TestHub.DAL;
+using TestHub.DAL.Interfaces;
+using TestHub.DAL.Repositories;
+using DotNetEnv;
 
-// Add services to the container.
+
+DotNetEnv.Env.Load();
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+var dbSettings = configuration.GetSection("DatabaseSettings");
+string connectionString = $@"
+    Server={Environment.GetEnvironmentVariable("DB_HOST") ?? dbSettings["Host"]};
+    Port={Environment.GetEnvironmentVariable("DB_PORT") ?? dbSettings["Port"]};
+    Database={Environment.GetEnvironmentVariable("DB_NAME") ?? dbSettings["Database"]};
+    UserId={Environment.GetEnvironmentVariable("DB_USER") ?? dbSettings["Username"]};
+    Password={Environment.GetEnvironmentVariable("DB_PASS") ?? dbSettings["Password"]}
+";
+
+builder.Host.UseSerilog((context, config) => config
+    .ReadFrom.Configuration(context.Configuration));
+
+builder.Services.AddDbContext<TestingSystemContext>(options =>
+    options.UseNpgsql(connectionString)
+);
+
+builder.Services.AddScoped<ISupervisorRepository, SupervisorRepository>();
+
+builder.Services.AddScoped<ISupervisorService, SupervisorService>();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapRazorPages();
 
-app.Run();
+await app.RunAsync();

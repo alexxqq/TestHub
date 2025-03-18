@@ -1,0 +1,25 @@
+﻿@page
+@model TestHub.View.Pages.Supervisor.AddAdminModel
+@{
+    ViewData["Title"] = "Додати адміна";
+}
+
+<h2>Додати адміністратора</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <label>Ім'я:</label>
+    <input type="text" asp-for="Name" class="form-control" required />
+
+    <label>Логін (email):</label>
+    <input type="email" asp-for="Login" class="form-control" required />
+
+    <label>Пароль:</label>
+    <input type="password" asp-for="Password" class="form-control" required />
+
+    <button type="submit" class="btn btn-success mt-3">Додати</button>
+</form>

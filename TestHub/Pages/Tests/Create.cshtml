@@ -1,0 +1,74 @@
+﻿@page
+@model TestHub.View.Pages.Tests.CreateModel
+@{
+}
+<h1>Створення тесту</h1>
+
+<form method="post">
+    <label>Назва:</label>
+    <input asp-for="TestDto.title" required />
+
+    <label>Опис:</label>
+    <textarea asp-for="TestDto.description"></textarea>
+
+    <label>Тривалість (хвилини):</label>
+    <input type="number" asp-for="TestDto.duration" required />
+
+    <label>Видимість:</label>
+    <select asp-for="TestDto.visibility">
+        <option value="public">Публічний</option>
+        <option value="private">Приватний</option>
+    </select>
+
+    <label>Область:</label>
+    <input asp-for="TestDto.area" required />
+
+    <label>Доступний з:</label>
+    <input type="datetime-local" asp-for="TestDto.available_from" required />
+
+    <label>Доступний до:</label>
+    <input type="datetime-local" asp-for="TestDto.available_to" required />
+
+    <label>Максимальна кількість спроб:</label>
+    <input type="number" asp-for="TestDto.max_attempts" required />
+
+    <label>Додати питання:</label>
+    <select id="questionType">
+        <option value="0">Одна правильна відповідь</option>
+        <option value="1">Кілька правильних</option>
+        <option value="2">True/False</option>
+        <option value="3">Відкрита відповідь</option>
+    </select>
+    <button type="button" onclick="redirectToQuestionPage()">Додати питання</button>
+
+    <h2>Додані питання:</h2>
+    <ul>
+        @if (Model.TempQuestions != null)
+        {
+            @foreach (var question in Model.TempQuestions)
+            {
+                <li>
+                    <b>@question.question_text</b>
+                    <ul>
+                        @foreach (var answer in question.answers)
+                        {
+                            <li>
+                                @answer.answer_text (@(answer.is_correct ? "✔" : "✖"))
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        }
+    </ul>
+
+    <button type="submit">Зберегти тест</button>
+</form>
+
+
+<script>
+    function redirectToQuestionPage() {
+        var type = document.getElementById("questionType").value;
+        window.location.href = "/AddQuestion?type=" + type;
+    }
+</script>
