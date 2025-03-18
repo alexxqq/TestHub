@@ -54,6 +54,7 @@ pipeline {
                             docker rm $CONTAINER_NAME || true &&
                             docker images --format '{{.Repository}}:{{.Tag}}' | grep $IMAGE_NAME | grep -v 'latest' | xargs -r docker rmi || true &&
                             docker run -d -p 8080:8080 --env DB_HOST=$DB_HOST --env DB_PASS=$DB_PASS --env DB_PORT=$DB_PORT --env DB_NAME=$DB_NAME --env DB_USER=$DB_USER --name $CONTAINER_NAME $IMAGE_NAME
+                            docker system prune --all --force
                             "
                         """
                     }
